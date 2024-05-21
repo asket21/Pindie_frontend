@@ -1,3 +1,4 @@
+"use client"
 import Styles from "./CardListSection.module.css"
 import { Card } from "../Card/Card"
 import Link from "next/link";

@@ -2,14 +2,14 @@
 import { useEffect,useState,useContext } from 'react';
 import {  } from 'react';
 import Styles from "./Register.module.css";
-import { isResponseOk, regisration,} from '@/app/api/api-utils';
+import { isResponseOk, regisration,authorize} from '@/app/api/api-utils';
 import { endpoints } from '@/app/api/config';
 import { useStore } from "@/app/store/app-store";
 
 
 
 export const Register = (props) => {
-const authContext = useStore();
+const regContext = useStore();
 const [regData, setRegData] = useState({ email: "", password: "", username: "" });
 const [message, setMessage] = useState({ status: null, text: null }); 
 
@@ -25,23 +25,27 @@ const handleSubmit = async (e) =>{
   const userData = await regisration(endpoints.reg, regData);
   
   if (isResponseOk(userData)) {
-    authContext.login(userData.user, userData.jwt);
-    setMessage({ status: "success", text: "Вы зарегистрировались!" })    
-  } else {
     
+    regContext.reg("user");
+    setMessage({ status: "success", text: "Вы зарегистрировались!" })
+       
+  } else {
+     
     setMessage({ status: "error", text: "Ошибка создания пользователя" });
   }
 }; 
 
 useEffect(() => {
   let timer; 
-  if (authContext.user) {
+  if (regContext.user) {
     timer = setTimeout(() => {            
       props.close();
+      regContext.unreg();
     }, 1000);
+    
   }
   return () => clearTimeout(timer);
-}, [authContext.user]); 
+}, [regContext.user]); 
 
   return (
     <form onSubmit={handleSubmit} className={Styles['form']}>
@@ -49,7 +53,7 @@ useEffect(() => {
       <div className={Styles['form__fields']}>
       <label className={Styles['form__field']}>
           <span className={Styles['form__field-title']}>Имя</span>
-          <input  onInput={handleInput} className={Styles['form__field-input']} name="username" type="name" placeholder='Введите имя'/>
+          <input  onInput={handleInput} className={Styles['form__field-input']} name="username" type="text" placeholder='Введите имя'/>
         </label>
         <label className={Styles['form__field']}>
           <span className={Styles['form__field-title']}>Email</span>
