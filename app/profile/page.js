@@ -1,11 +1,15 @@
+"use client"
+import { Profile } from "../components/Profile/Profile";
+import { useStore } from "@/app/store/app-store";
 
-import { Profile } from "../components/Profile/Profile"
 
 
 export default function ProfilePage(props){
-    
-    return (<main className="main-inner">
-   <Profile/>
+    const authContext = useStore(); 
+
+    return (
+    <main className="main-inner">
+   <Profile data="authContext" />
     </main>);
 }
 
