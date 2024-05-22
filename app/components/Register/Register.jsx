@@ -1,5 +1,5 @@
 "use client"
-import { useEffect,useState,useContext } from 'react';
+import { useEffect,useState } from 'react';
 import {  } from 'react';
 import Styles from "./Register.module.css";
 import { isResponseOk, regisration,authorize} from '@/app/api/api-utils';
