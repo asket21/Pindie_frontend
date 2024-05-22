@@ -1,4 +1,4 @@
-export const BASE_URL = "http://localhost:3001/api";
+export const BASE_URL = "https://pindieback-asket21.nomoredomainswork.ru/";
 
 export const endpoints = {
     games: `${BASE_URL}/games`,
