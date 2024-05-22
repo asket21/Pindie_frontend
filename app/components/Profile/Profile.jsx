@@ -3,7 +3,7 @@
 import Styles from "./Profile.module.css"
 import { useStore } from "@/app/store/app-store";
 
-export const Profile = (props) => {
+export const Profile = () => {
   const authContext = useStore();
   
 

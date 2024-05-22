@@ -8,7 +8,7 @@ import {
   checkIfUserVoted,
   vote,
 } from "@/app/api/api-utils";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import { Preloader } from "@/app/components/Preloader/Preloader";
 import { GameNotFound } from "@/app/components/GameNotFound/GameNotFound";
 import { useStore } from "@/app/store/app-store";
